@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name="pacientes")
+@Table(name = "pacientes")
 @Entity(name = "Paciente")
 @Getter
 @NoArgsConstructor
@@ -20,9 +20,25 @@ public class Paciente {
     private String email;
     private String cpf;
 
+    private Boolean ativo;
+
     public Paciente(DadosCadastroPaciente dados) {
         this.cpf = dados.cpf();
         this.nome = dados.nome();
         this.email = dados.email();
+        this.ativo = true;
+    }
+
+    public void atualizarInformacoes(DadosAtualizarPaciente dados) {
+        if (dados.email() != null) {
+            this.email = dados.email();
+        }
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
