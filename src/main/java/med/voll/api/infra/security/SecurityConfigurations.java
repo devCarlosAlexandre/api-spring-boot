@@ -29,6 +29,10 @@ public class SecurityConfigurations {
                     req.requestMatchers(HttpMethod.POST, "/login").permitAll();
                     req.requestMatchers(HttpMethod.POST, "/register").permitAll();
                     req.anyRequest().authenticated();
+//                    exemplo de como utilizar o controle de acesso aos recursos de acordo com o perfil de usuário.
+//                    no exemplo abaixo somente usuários com o perfil ADMIN podem excluir medicos e pacientes.
+//                    req.requestMatchers(HttpMethod.DELETE, "/medicos").hasRole("ADMIN");
+//                    req.requestMatchers(HttpMethod.DELETE, "/pacientes").hasRole("ADMIN");
                 })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
